@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đang Chuyển Hướng An Toàn...</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+            color: #333;
+            text-align: center;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px 50px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #007bff;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Đang Chuyển Hướng An Toàn...</h1>
+        <p>Hệ thống đang kiểm tra và chuyển hướng bạn đến trang đích. Vui lòng chờ trong <span id="countdown">3</span> giây.</p>
+        <div class="spinner"></div>
+        <p>Nếu không tự động chuyển hướng, vui lòng nhấn vào liên kết sau:</p>
+        <a id="redirectLink" href="#">Nhấn vào đây để tiếp tục</a>
+    </div>
+
+    <script>
+        // Thay thế URL_GOC_CUA_BAN bằng link gốc mà bạn muốn bọc
+        const TARGET_URL = "https://www.musker-mediacenter.online/2025"; 
+        const DELAY_SECONDS = 3; // Thời gian chờ (3 giây)
+
+        document.getElementById('redirectLink').href = TARGET_URL;
+
+        let countdown = DELAY_SECONDS;
+        const countdownElement = document.getElementById('countdown');
+
+        function updateCountdown() {
+            countdownElement.textContent = countdown;
+            if (countdown <= 0) {
+                // Thực hiện chuyển hướng sau khi hết thời gian chờ
+                window.location.replace(TARGET_URL);
+            } else {
+                countdown--;
+                setTimeout(updateCountdown, 1000);
+            }
+        }
+
+        // Bắt đầu đếm ngược
+        setTimeout(updateCountdown, 1000);
+    </script>
+</body>
+</html>
